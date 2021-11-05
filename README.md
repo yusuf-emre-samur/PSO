@@ -17,3 +17,6 @@
 2. Drop Wave Function
 3. Levy N13 Function
 4. Ackley Function
+
+## Requires:
+Eigen Library in path: ```/usr/include/eigen-3.4.0```
