@@ -1,0 +1,2 @@
+population_size,function_name,v_max,x_spawn,iterations
+25,Ackley Function,1,30,200
