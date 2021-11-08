@@ -27,10 +27,10 @@ class ParticleParameter
 
     void cut_vmax(Velocity* const v) const
     {
-        if (v->x() > v_max.x()) {
+        if ( v->x() > v_max.x() ) {
             v->x() = v_max.x();
         }
-        if (v->y() > v_max.y()) {
+        if ( v->y() > v_max.y() ) {
             v->y() = v_max.y();
         }
     };

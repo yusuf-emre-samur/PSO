@@ -12,12 +12,18 @@ AlignConsecutiveAssignments: false
 AlignOperands: true
 AllowAllConstructorInitializersOnNextLine: true
 AllowShortFunctionsOnASingleLine: false
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
-AlwaysBreakAfterDefinitionReturnType: false
-BreakBeforeBraces: Custom
 BraceWrapping:
-  AfterFunction: true
   AfterClass: true
+  AfterFunction: true
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  BeforeElse: false
+BreakBeforeBraces: Custom
+BreakConstructorInitializers: BeforeColon
+CompactNamespaces: true
+EmptyLineBeforeAccessModifier: Always
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeInheritanceColon: true
+SpacesInConditionalStatement: true
 ---
 

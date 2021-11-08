@@ -79,10 +79,10 @@ double const Particle::step()
 
 void Particle::update_pb()
 {
-    if (cost_ < cost_pb_) {
+    if ( cost_ < cost_pb_ ) {
         cost_pb_ = cost_;
     }
-    if (cost_ < cost_pg_) {
+    if ( cost_ < cost_pg_ ) {
         cost_pg_ = cost_;
     }
 }

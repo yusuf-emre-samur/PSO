@@ -9,7 +9,7 @@
 
 int main(int argc, char* argv[])
 {
-    if (argc < 6) { // if not all args are set
+    if ( argc < 6 ) { // if not all args are set
         std::cout << "./main particles iterations v_max x_bounds function_no\n";
         std::cout << "\t1: Rosenbrock Function\n\t2: Drop Wave Function\n\t3: "
                      "Levy N13 Function\n\t4: Ackley Function\n";
@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     // function and function name
     std::function<double const(pso::Position const&)> problem_function;
     std::string problem_function_name;
-    switch (std::stoi(argv[5])) {
+    switch ( std::stoi(argv[5]) ) {
     case 1:
         problem_function = pso::ProblemFunctions::rosenbrock_function;
         problem_function_name = "Rosenbrock Function";
