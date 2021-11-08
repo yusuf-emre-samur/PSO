@@ -2,6 +2,7 @@
 # We'll use defaults from the LLVM style, but with 4 columns indentation.
 BasedOnStyle: LLVM
 IndentWidth: 4
+TabWidth: 4
 ---
 Language: Cpp
 DerivePointerAlignment: false
@@ -25,5 +26,7 @@ EmptyLineBeforeAccessModifier: Always
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeInheritanceColon: true
 SpacesInConditionalStatement: true
+Standard: c++20
+UseTab: Always
 ---
 
