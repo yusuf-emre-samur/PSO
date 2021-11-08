@@ -9,7 +9,8 @@ namespace pso {
 Particle::Particle(ParticleParameter particle_params,
                    std::function<double const(Position const&)> problem_func,
                    unsigned int const& x_spawn)
-    : params_(particle_params) {
+    : params_(particle_params)
+{
     std::default_random_engine rand_gen;
     std::uniform_real_distribution<double> rand_dist(-(double)x_spawn,
                                                      (double)x_spawn);
@@ -28,31 +29,46 @@ Particle::Particle(ParticleParameter particle_params,
 }
 
 // get
-Position const& Particle::p() const { return position_; }
+Position const& Particle::p() const
+{
+    return position_;
+}
 
-Position const& Particle::pb() const { return pb_; }
+Position const& Particle::pb() const
+{
+    return pb_;
+}
 
-double Particle::cost_pb() const { return cost_pb_; }
+double Particle::cost_pb() const
+{
+    return cost_pb_;
+}
 
-std::vector<Position> const& Particle::position_history() const {
+std::vector<Position> const& Particle::position_history() const
+{
     return history_positions_;
 }
 
-ParticleParameter const& Particle::particle_parameter() const {
+ParticleParameter const& Particle::particle_parameter() const
+{
     return params_;
 }
 
 // upadte
-void Particle::update_pg(Position const& new_pg) { pg_ = new_pg; }
+void Particle::update_pg(Position const& new_pg)
+{
+    pg_ = new_pg;
+}
 
 // step
-double const Particle::step() {
+double const Particle::step()
+{
     // decrease w
     params_.update_w();
     // calculate velocity and cut to v_max, then p+=v
     velocity_ = params_.w * velocity_ +
-        params_.c1 * dis(gen) * (pg_ - position_) +
-        params_.c2 * dis(gen) * (pb_ - position_);
+                params_.c1 * dis(gen) * (pg_ - position_) +
+                params_.c2 * dis(gen) * (pb_ - position_);
     params_.cut_vmax(&velocity_);
     position_ += velocity_;
     cost_ = problem_func_(position_);
@@ -61,7 +77,8 @@ double const Particle::step() {
     return cost_pb_;
 }
 
-void Particle::update_pb() {
+void Particle::update_pb()
+{
     if (cost_ < cost_pb_) {
         cost_pb_ = cost_;
     }

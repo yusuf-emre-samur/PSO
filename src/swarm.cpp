@@ -3,7 +3,8 @@
 namespace pso {
 
 Swarm::Swarm(SwarmParameter const& swarm_parameter)
-    : swarm_parameter_(swarm_parameter) {
+    : swarm_parameter_(swarm_parameter)
+{
     for (unsigned int i = 0; i < swarm_parameter_.population_size; i++) {
         particles_.push_back(new Particle(
             swarm_parameter_.particle_parameter, swarm_parameter_.problem_func,
@@ -14,7 +15,8 @@ Swarm::Swarm(SwarmParameter const& swarm_parameter)
     cost_pg_ = particles_[0]->cost_pb();
 }
 
-void Swarm::minimize() {
+void Swarm::minimize()
+{
     double tmp_cost = particles_[0]->cost_pb();
     for (unsigned int i = 0; i < swarm_parameter_.particle_parameter.iterations;
          i++) {
@@ -30,7 +32,8 @@ void Swarm::minimize() {
     }
 }
 
-void Swarm::print_summary() const {
+void Swarm::print_summary() const
+{
     std::cout << "Summary of Swarm:" << std::endl;
     std::cout << "\tProblem Function: " << swarm_parameter_.function_name
               << std::endl;
@@ -53,7 +56,8 @@ void Swarm::print_summary() const {
     std::cout << "\tmin. cost: " << cost_pg_ << std::endl;
 }
 
-void Swarm::summary_to_csv() const {
+void Swarm::summary_to_csv() const
+{
     // position history of each particle
     {
         unsigned int particle_num = 0;

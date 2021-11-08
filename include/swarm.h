@@ -12,7 +12,8 @@
 
 namespace pso {
 
-class Swarm : public ISwarm {
+class Swarm : public ISwarm
+{
   public:
     Swarm(SwarmParameter const& swarm_params);
 

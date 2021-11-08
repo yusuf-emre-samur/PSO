@@ -10,7 +10,8 @@
 
 namespace pso {
 
-class Particle : public IParticle {
+class Particle : public IParticle
+{
   public:
     Particle(ParticleParameter particle_params,
              std::function<double const(Position const&)> problem_func,

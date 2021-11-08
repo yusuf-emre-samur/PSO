@@ -11,7 +11,8 @@ using Scalar = double;
 using Position = Eigen::Matrix<Scalar, 2, 1>;
 using Velocity = Eigen::Matrix<Scalar, 2, 1>;
 
-class IParticle {
+class IParticle
+{
   public:
     ~IParticle() = default;
 

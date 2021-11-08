@@ -9,6 +9,15 @@ PointerAlignment: Left
 
 AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: false
-AlignOperands: false
+AlignOperands: true
+AllowAllConstructorInitializersOnNextLine: true
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterClass: true
 ---
 

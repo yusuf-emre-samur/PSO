@@ -7,7 +7,8 @@
 #include "swarm.h"
 #include "swarm_parameter.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
     if (argc < 6) { // if not all args are set
         std::cout << "./main particles iterations v_max x_bounds function_no\n";
         std::cout << "\t1: Rosenbrock Function\n\t2: Drop Wave Function\n\t3: "

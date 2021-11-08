@@ -8,13 +8,15 @@ using Scalar = double;
 using Position = Eigen::Matrix<Scalar, 2, 1>;
 using Velocity = Eigen::Matrix<Scalar, 2, 1>;
 
-class ParticleParameter {
+class ParticleParameter
+{
   public:
     ParticleParameter(double const& _w_start, double const& _w_end,
                       double const& _c1, double const& _c2,
                       unsigned int const& iterations, Velocity const& v_max,
                       unsigned int const& x_spawn)
-        : iterations(iterations), v_max(v_max), x_spawn(x_spawn) {
+        : iterations(iterations), v_max(v_max), x_spawn(x_spawn)
+    {
         w = _w_start;
         w_start = _w_start;
         w_end = _w_end;
@@ -23,7 +25,8 @@ class ParticleParameter {
     }
     ~ParticleParameter() = default;
 
-    void cut_vmax(Velocity* const v) const {
+    void cut_vmax(Velocity* const v) const
+    {
         if (v->x() > v_max.x()) {
             v->x() = v_max.x();
         }
@@ -32,7 +35,10 @@ class ParticleParameter {
         }
     };
 
-    void update_w() { w -= (w_start - w_end) * 1 / iterations; }
+    void update_w()
+    {
+        w -= (w_start - w_end) * 1 / iterations;
+    }
     // Position const& check_vmax();
 
     const unsigned int iterations;

@@ -2,7 +2,8 @@
 #define I_SWARM_H
 
 namespace pso {
-class ISwarm {
+class ISwarm
+{
   public:
     ~ISwarm() = default;
     // main
