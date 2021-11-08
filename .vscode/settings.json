@@ -63,9 +63,5 @@
         "bit": "cpp"
     },
     "C_Cpp.clang_format_path": "${workspaceFolder}/.clang-format",
-    "C_Cpp.formatting": "clangFormat",
-    "clang-format.assumeFilename": "${workspaceFolder}/.clang-format",
-    "clang-format.fallbackStyle": "Google",
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true
+    "C_Cpp.formatting": "clangFormat"
 }
