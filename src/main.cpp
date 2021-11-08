@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
 	const double v_max_input = (double)std::stod(argv[3]);
 	const int x_spawn = std::stod(argv[4]);
 	const pso::Velocity v_max{v_max_input, v_max_input};
+
 	// function and function name
 	std::function<double const(pso::Position const&)> problem_function;
 	std::string problem_function_name;
@@ -50,8 +51,14 @@ int main(int argc, char* argv[])
 	srand((unsigned int)time(0));
 
 	// parameter
-	const pso::ParticleParameter particle_params(0.9, 0.5, 1.49, 1.49,
+	const double w_start = 0.9;
+	const double w_end = 0.5;
+	const double c1 = 1.49;
+	const double c2 = 1.49;
+	// particle param
+	const pso::ParticleParameter particle_params(w_start, w_end, c1, c2,
 												 iterations, v_max, x_spawn);
+	// swarm param
 	const pso::SwarmParameter swarm_params(population_size, problem_function,
 										   problem_function_name,
 										   particle_params);
