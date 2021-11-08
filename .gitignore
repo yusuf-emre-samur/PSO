@@ -1,3 +1,4 @@
 build/CMakeFiles
 build/**.cmake
 build/**.txt
+data/positions/**

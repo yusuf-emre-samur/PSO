@@ -1,33 +1,31 @@
 #ifndef I_PARTICLE_H
 #define I_PARTICLE_H
 
+#include "Eigen/Dense"
 #include "particle_parameter.h"
 #include "vector"
-#include "Eigen/Dense"
 
-namespace pso{
+namespace pso {
 
 using Scalar = double;
-using Position = Eigen::Matrix<Scalar, 3, 1>;
+using Position = Eigen::Matrix<Scalar, 2, 1>;
 using Velocity = Eigen::Matrix<Scalar, 2, 1>;
 
-class IParticle{
-public:
+class IParticle {
+  public:
     ~IParticle() = default;
 
     // get
-    virtual Position const& pb() const = 0;
     virtual Position const& p() const = 0;
+    virtual Position const& pb() const = 0;
+    virtual double cost_pb() const = 0;
     virtual std::vector<Position> const& position_history() const = 0;
-    //upadte
+    // upadte
     virtual void update_pg(Position const& new_pg) = 0;
-    // set
-    virtual void set_pg(Position const& new_pg) = 0;
     // step
-    virtual Position const& step() = 0;
+    virtual double const step() = 0;
 };
 
-}
+} // namespace pso
 
-
-#endif 
+#endif

@@ -1,11 +1,9 @@
 #ifndef I_SWARM_H
 #define I_SWARM_H
 
-namespace pso
-{
-class ISwarm
-{
-public:
+namespace pso {
+class ISwarm {
+  public:
     ~ISwarm() = default;
     // main
     virtual void minimize() = 0;
