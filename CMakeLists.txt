@@ -7,7 +7,7 @@ file(GLOB SRC_FILES src/*.cpp)
 
 # includes
 include_directories(
-    "/usr/include/eigen-3.4.0/"
+    "/usr/include/eigen3/"
     "${CMAKE_SOURCE_DIR}/include/"
     )
 
