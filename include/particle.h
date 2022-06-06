@@ -1,16 +1,18 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
-#include "Eigen/Dense"
-#include "functional"
-#include "i_particle.h"
-#include "iostream"
+// interface
 #include "particle_parameter.h"
-#include "random"
-#include "vector"
+// eigen
+#include <Eigen/Dense>
+// std lib
+#include <functional>
+#include <iostream>
+#include <random>
+#include <vector>
 
 namespace pso {
 
-class Particle : public IParticle
+class Particle
 {
   public:
 	Particle(ParticleParameter particle_params,
@@ -19,13 +21,13 @@ class Particle : public IParticle
 	~Particle() = default;
 
 	// get
-	Position const& p() const override;
-	Position const& pb() const override;
-	double cost_pb() const override;
+	Position const& p() const;
+	Position const& pb() const;
+	double cost_pb() const;
 	ParticleParameter const& particle_parameter() const;
-	std::vector<Position> const& position_history() const override;
+	std::vector<Position> const& position_history() const;
 	// upadte
-	void update_pg(Position const& new_pg) override;
+	void update_pg(Position const& new_pg);
 	// step
 	double const step();
 

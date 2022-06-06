@@ -2,24 +2,26 @@
 
 namespace pso {
 
-Swarm::Swarm(SwarmParameter const& swarm_parameter)
+Swarm::Swarm(const SwarmParameter& swarm_parameter)
 	: swarm_parameter_(swarm_parameter)
 {
-	for ( unsigned int i = 0; i < swarm_parameter_.population_size; i++ ) {
-		particles_.push_back(new Particle(
-			swarm_parameter_.particle_parameter, swarm_parameter_.problem_func,
-			swarm_parameter_.particle_parameter.x_spawn));
+	for ( unsigned int i = 0; i < this->swarm_parameter_.population_size;
+		  i++ ) {
+		this->particles_.push_back(std::make_shared<Particle>(
+			this->swarm_parameter_.particle_parameter,
+			swarm_parameter_.problem_func,
+			this->swarm_parameter_.particle_parameter.x_spawn));
 	}
 	// set pg and cost of first particle
-	pg_ = particles_[0]->pb();
-	cost_pg_ = particles_[0]->cost_pb();
+	this->pg_ = particles_[0]->pb();
+	this->cost_pg_ = particles_[0]->cost_pb();
 }
 
 void Swarm::minimize()
 {
-	double tmp_cost = particles_[0]->cost_pb();
+	double tmp_cost = this->particles_[0]->cost_pb();
 	for ( unsigned int i = 0;
-		  i < swarm_parameter_.particle_parameter.iterations; i++ ) {
+		  i < this->swarm_parameter_.particle_parameter.iterations; i++ ) {
 		for ( auto const& particle : particles_ ) {
 			tmp_cost = particle->step();
 			if ( tmp_cost < cost_pg_ ) {
@@ -28,7 +30,7 @@ void Swarm::minimize()
 			}
 			particle->update_pg(pg_);
 		}
-		history_min_cost.push_back(cost_pg_);
+		this->history_min_cost_.push_back(cost_pg_);
 	}
 }
 
@@ -61,11 +63,11 @@ void Swarm::summary_to_csv() const
 	// position history of each particle
 	{
 		unsigned int particle_num = 0;
-		for ( auto const& particle : particles_ ) {
+		for ( auto const& particle : this->particles_ ) {
 			std::ofstream csvfile;
 			csvfile.open("./data/positions/history_" +
 						 std::to_string(particle_num) + ".csv");
-			auto history = particle->position_history();
+			const auto history = particle->position_history();
 			for ( auto const& position : history ) {
 				csvfile << position.x() << "," << position.y() << "\n";
 			}
@@ -76,7 +78,7 @@ void Swarm::summary_to_csv() const
 	{
 		std::ofstream csvfile;
 		csvfile.open("./data/swarm_min_cost_history.csv");
-		for ( auto const& pg : history_min_cost ) {
+		for ( auto const& pg : this->history_min_cost_ ) {
 			csvfile << pg << "\n";
 		}
 	}
@@ -85,11 +87,11 @@ void Swarm::summary_to_csv() const
 		std::ofstream csvfile;
 		csvfile.open("./data/swarm_summary.csv");
 		csvfile << "population_size,function_name,v_max,x_spawn,iterations\n";
-		csvfile << swarm_parameter_.population_size << ","
-				<< swarm_parameter_.function_name << ",";
-		csvfile << swarm_parameter_.particle_parameter.v_max.x() << ","
-				<< swarm_parameter_.particle_parameter.x_spawn << ",";
-		csvfile << swarm_parameter_.particle_parameter.iterations << "\n";
+		csvfile << this->swarm_parameter_.population_size << ","
+				<< this->swarm_parameter_.function_name << ",";
+		csvfile << this->swarm_parameter_.particle_parameter.v_max.x() << ","
+				<< this->swarm_parameter_.particle_parameter.x_spawn << ",";
+		csvfile << this->swarm_parameter_.particle_parameter.iterations << "\n";
 	}
 }
 

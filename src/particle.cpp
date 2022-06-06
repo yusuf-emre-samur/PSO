@@ -2,7 +2,7 @@
 
 std::random_device rd;
 std::mt19937 gen(rd());
-std::uniform_real_distribution<float> dis(0, 1);
+std::uniform_real_distribution<double> dis(0, 1);
 
 namespace pso {
 
@@ -11,79 +11,79 @@ Particle::Particle(ParticleParameter particle_params,
 				   unsigned int const& x_spawn)
 	: params_(particle_params)
 {
-	std::default_random_engine rand_gen;
 	std::uniform_real_distribution<double> rand_dist(-(double)x_spawn,
 													 (double)x_spawn);
 
-	problem_func_ = problem_func;
+	this->problem_func_ = problem_func;
 	// random start velocity
-	velocity_ = Velocity::Random(2, 1);
+	this->velocity_ = Velocity::Random(2, 1);
 	// random start position
-	position_ = Position::Random(2, 1) * rand_dist(rand_gen);
-	pb_ = position_;
-	pg_ = position_;
+	this->position_ = Position::Random(2, 1) * rand_dist(rd);
+	this->pb_ = position_;
+	this->pg_ = position_;
 	// cost
-	cost_ = problem_func_(position_);
-	cost_pb_ = cost_;
-	cost_pg_ = cost_;
+	this->cost_ = this->problem_func_(this->position_);
+	this->cost_pb_ = this->cost_;
+	this->cost_pg_ = this->cost_;
 }
 
 // get
 Position const& Particle::p() const
 {
-	return position_;
+	return this->position_;
 }
 
 Position const& Particle::pb() const
 {
-	return pb_;
+	return this->pb_;
 }
 
 double Particle::cost_pb() const
 {
-	return cost_pb_;
+	return this->cost_pb_;
 }
 
 std::vector<Position> const& Particle::position_history() const
 {
-	return history_positions_;
+	return this->history_positions_;
 }
 
 ParticleParameter const& Particle::particle_parameter() const
 {
-	return params_;
+	return this->params_;
 }
 
 // upadte
-void Particle::update_pg(Position const& new_pg)
+void Particle::update_pg(const Position& new_pg)
 {
-	pg_ = new_pg;
+	this->pg_ = new_pg;
 }
 
 // step
 double const Particle::step()
 {
 	// decrease w
-	params_.update_w();
+	this->params_.update_w();
 	// calculate velocity and cut to v_max, then p+=v
-	velocity_ = params_.w * velocity_ +
-				params_.c1 * dis(gen) * (pg_ - position_) +
-				params_.c2 * dis(gen) * (pb_ - position_);
-	params_.cut_vmax(&velocity_);
-	position_ += velocity_;
-	cost_ = problem_func_(position_);
-	update_pb();
-	history_positions_.push_back(position_);
-	return cost_pb_;
+	this->velocity_ =
+		this->params_.w * this->velocity_ +
+		this->params_.c1 * dis(gen) * (this->pg_ - this->position_) +
+		this->params_.c2 * dis(gen) * (this->pb_ - this->position_);
+	this->params_.cut_vmax(&velocity_);
+	this->position_ += velocity_;
+	this->cost_ = this->problem_func_(this->position_);
+	this->update_pb();
+	this->history_positions_.push_back(this->position_);
+	return this->cost_pb_;
 }
 
 void Particle::update_pb()
 {
-	if ( cost_ < cost_pb_ ) {
-		cost_pb_ = cost_;
+	if ( cost_ < this->cost_pb_ ) {
+		this->cost_pb_ = cost_;
 	}
-	if ( cost_ < cost_pg_ ) {
-		cost_pg_ = cost_;
+	if ( cost_ < this->cost_pg_ ) {
+		this->cost_pg_ = cost_;
 	}
 }
 

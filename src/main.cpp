@@ -1,11 +1,17 @@
-#include "Eigen/Dense"
-#include "numeric"
+// interfaces
 #include "particle.h"
 #include "particle_parameter.h"
 #include "problem_functions.h"
-#include "string"
 #include "swarm.h"
 #include "swarm_parameter.h"
+
+// eigen
+#include <Eigen/Dense>
+
+// std lib
+#include <memory>
+#include <numeric>
+#include <string>
 
 int main(int argc, char* argv[])
 {
@@ -64,7 +70,7 @@ int main(int argc, char* argv[])
 										   particle_params);
 
 	// pso simulation
-	pso::Swarm* swarm = new pso::Swarm(swarm_params);
+	auto swarm = std::make_unique<pso::Swarm>(swarm_params);
 	swarm->minimize();
 	swarm->print_summary();
 	swarm->summary_to_csv();

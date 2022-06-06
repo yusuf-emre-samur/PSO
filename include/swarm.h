@@ -2,35 +2,35 @@
 #define SWARM_H
 #include "Eigen/Dense"
 #include "functional"
-#include "i_swarm.h"
-#include "iostream"
 #include "particle.h"
-#include "string"
+// std lib
 #include "swarm_parameter.h"
-#include "vector"
 #include <fstream>
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace pso {
 
-class Swarm : public ISwarm
+class Swarm
 {
   public:
-	Swarm(SwarmParameter const& swarm_params);
+	Swarm(const SwarmParameter& swarm_params);
 
 	// main
-	void minimize() override;
+	void minimize();
 	// to csv
-	void print_summary() const override;
-	void summary_to_csv() const override;
+	void print_summary() const;
+	void summary_to_csv() const;
 
   private:
 	const SwarmParameter swarm_parameter_;
 	// population
-	std::vector<Particle*> particles_;
+	std::vector<std::shared_ptr<Particle>> particles_;
 	// best position
 	Position pg_;
 	double cost_pg_;
-	std::vector<double> history_min_cost;
+	std::vector<double> history_min_cost_;
 };
 
 } // namespace pso
