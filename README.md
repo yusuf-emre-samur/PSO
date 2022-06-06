@@ -10,7 +10,7 @@
 ```make```
 
 ## Run:
-```./build/main $population_size $ iterations $v_max $x_spawn $function_no```
+```./build/main $population_size $iterations $v_max $x_spawn $function_no```
 
 ## Functions:
 1. Rosenbrock Function
